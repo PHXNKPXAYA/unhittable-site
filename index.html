@@ -1,119 +1,524 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weak Botnet</title>
-  <style>
-    :root {
-      --bg-dark: #0d0d0d;
-      --bg-light: #f5f5f5;
-      --text-dark: #00ffcc;
-      --text-light: #222;
-      --border-dark: #00ffcc88;
-      --border-light: #22222244;
-    }
-
-    [data-theme="dark"] {
-      --bg: var(--bg-dark);
-      --text: var(--text-dark);
-      --border: var(--border-dark);
-    }
-
-    [data-theme="light"] {
-      --bg: var(--bg-light);
-      --text: var(--text-light);
-      --border: var(--border-light);
-    }
-
-    * {
-      box-sizing: border-box;
-      cursor: none;
-    }
-
-    body {
-      margin: 0;
-      height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      transition: background 0.3s, color 0.3s;
-      overflow: hidden;
-    }
-
-    .message {
-      font-size: 2.5rem;
-      text-align: center;
-      padding: 2rem 3rem;
-      border: 2px solid var(--border);
-      border-radius: 1.5rem;
-      box-shadow: 0 0 20px var(--border);
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        box-shadow: 0 0 10px var(--border);
-      }
-      to {
-        box-shadow: 0 0 25px var(--border);
-      }
-    }
-
-    .toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: 2px solid var(--border);
-      border-radius: 25px;
-      padding: 0.5rem 1rem;
-      color: var(--text);
-      font-size: 1rem;
-      cursor: pointer;
-      z-index: 2;
-      box-shadow: 0 0 10px var(--border);
-      transition: background 0.3s, color 0.3s;
-    }
-
-    /* Glowing cursor dot */
-    .cursor-dot {
-      position: fixed;
-      width: 14px;
-      height: 14px;
-      background: var(--text);
-      border-radius: 50%;
-      pointer-events: none;
-      box-shadow: 0 0 10px var(--text), 0 0 20px var(--text);
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unhittable Site - DDoS Protected</title>
+    <style>
+        :root {
+            --bg-dark: #0d0d0d;
+            --bg-light: #f5f5f5;
+            --text-dark: #00ffcc;
+            --text-light: #222;
+            --border-dark: #00ffcc88;
+            --border-light: #22222244;
+            --card-bg-dark: #1a1a1a;
+            --card-bg-light: #ffffff;
+            --nav-bg-dark: #111111;
+            --nav-bg-light: #eaeaea;
+        }
+        
+        [data-theme="dark"] {
+            --bg: var(--bg-dark);
+            --text: var(--text-dark);
+            --border: var(--border-dark);
+            --card-bg: var(--card-bg-dark);
+            --nav-bg: var(--nav-bg-dark);
+        }
+        
+        [data-theme="light"] {
+            --bg: var(--bg-light);
+            --text: var(--text-light);
+            --border: var(--border-light);
+            --card-bg: var(--card-bg-light);
+            --nav-bg: var(--nav-bg-light);
+        }
+        
+        * {
+            box-sizing: border-box;
+            cursor: none;
+        }
+        
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: var(--border);
+            color: var(--bg);
+        }
+        
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 2rem 0;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 2px solid var(--border);
+            border-radius: 1.5rem;
+            box-shadow: 0 0 20px var(--border);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .warning {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff4444;
+        }
+        
+        .joke {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        
+        .card-content {
+            line-height: 1.6;
+        }
+        
+        .toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            color: var(--text);
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 0 10px var(--border);
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            background: var(--text);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 10px var(--text), 0 0 20px var(--text);
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 10px var(--border); }
+            to { box-shadow: 0 0 25px var(--border); }
+        }
+        
+        .legal-warning {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .legal-title {
+            color: #ff4444;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .warning {
+                font-size: 1.8rem;
+            }
+            
+            .joke {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <button class="toggle" onclick="toggleTheme()">Toggle Mode</button>
-  <div class="message">
-    If you can see this,<br><strong>your net is ahh twin💔🥀.</strong>
-  </div>
-  <div class="cursor-dot" id="cursorDot"></div>
-
-  <script>
-    const root = document.documentElement;
-    function toggleTheme() {
-      const current = root.getAttribute('data-theme');
-      root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
-    }
-
-    // Cursor dot follow
-    const cursorDot = document.getElementById('cursorDot');
-    document.addEventListener('mousemove', (e) => {
-      cursorDot.style.left = e.clientX + 'px';
-      cursorDot.style.top = e.clientY + 'px';
-    });
-  </script>
+    <button class="toggle" onclick="toggleTheme()">Toggle Mode</button>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">UNHITTABLE SITE</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="protection">Protection</a>
+                <a href="#" class="nav-link" data-page="legal">Legal Info</a>
+                <a href="#" class="nav-link" data-page="about">About</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="header">
+                <div class="warning">Attempting to DDoS this website will not work</div>
+                <div class="joke">don’t even try lmao its not gonna work 💔</div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Why "Unhittable Site"?</h2>
+                <p>The name "Unhittable Site" reflects our commitment to creating a website that can withstand even the most determined DDoS attacks. Just like an unhittable pitcher in baseball, our infrastructure is designed to deflect and absorb incoming traffic attacks, ensuring legitimate users always have access to the content they need.</p>
+                <p>This site serves as both a demonstration of robust DDoS protection and an educational resource about the importance of cybersecurity and the legal consequences of participating in DDoS attacks.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Quick Overview</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <div>Advanced DDoS Protection</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <div>High Performance</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌐</div>
+                        <div>Global CDN Network</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <div>Secure Infrastructure</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Protection Page -->
+        <div id="protection" class="page">
+            <div class="content-section">
+                <h2 class="section-title">Our DDoS Protection Features</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">🛡️ Advanced Rate Limiting</h3>
+                        <div class="card-content">
+                            Our systems intelligently detect and throttle suspicious traffic patterns while allowing legitimate users through without interruption.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🌐 Global CDN Network</h3>
+                        <div class="card-content">
+                            Distributed across multiple continents, our content delivery network absorbs and disperses attack traffic across hundreds of servers.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🤖 AI-Powered Filtering</h3>
+                        <div class="card-content">
+                            Machine learning algorithms continuously analyze traffic to identify and block malicious requests in real-time.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">⚡ Auto-Scaling Infrastructure</h3>
+                        <div class="card-content">
+                            Our servers automatically scale to handle traffic spikes, ensuring service remains available during attacks.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🔒 TLS/SSL Encryption</h3>
+                        <div class="card-content">
+                            All traffic is encrypted, preventing interception and manipulation of data between users and our servers.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">📊 Real-Time Monitoring</h3>
+                        <div class="card-content">
+                            24/7 security monitoring with instant alerts and automated response systems to mitigate threats immediately.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Legal Page -->
+        <div id="legal" class="page">
+            <div class="content-section legal-warning">
+                <h2 class="legal-title">⚠️ DDoS Attacks Are A Crime</h2>
+                <p><strong>Distributed Denial of Service (DDoS) attacks are illegal in most countries and carry severe consequences:</strong></p>
+                <ul>
+                    <li>In the United States, DDoS attacks violate the Computer Fraud and Abuse Act with penalties including fines and up to 10 years in prison</li>
+                    <li>In the United Kingdom, DDoS attacks can result in up to 10 years imprisonment under the Computer Misuse Act</li>
+                    <li>In the European Union, attacks can lead to significant fines and imprisonment under the EU Cybersecurity Act</li>
+                    <li>Many countries have extradition treaties for cybercrime offenses</li>
+                </ul>
+                <p>Participating in DDoS attacks, even as part of a "botnet," can result in criminal charges, civil liability, permanent criminal records, and difficulty finding employment. Law enforcement agencies worldwide actively track and prosecute individuals involved in these activities.</p>
+                <p><strong>Remember: There are no anonymous attacks online. Your digital footprint can always be traced.</strong></p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Legal Consequences Worldwide</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">🇺🇸 United States</h3>
+                        <div class="card-content">
+                            Computer Fraud and Abuse Act violations can result in fines and imprisonment of up to 10 years for first offenses, with enhanced penalties for repeat offenders.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🇬🇧 United Kingdom</h3>
+                        <div class="card-content">
+                            Under the Computer Misuse Act 1990, DDoS attacks can lead to up to 10 years imprisonment and unlimited fines for serious offenses.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🇪🇺 European Union</h3>
+                        <div class="card-content">
+                            The EU Cybersecurity Act and national laws in member states impose severe penalties, including imprisonment and substantial fines.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🇨🇦 Canada</h3>
+                        <div class="card-content">
+                            Canada's Criminal Code includes provisions against unauthorized computer use, with penalties including imprisonment for up to 10 years.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="content-section">
+                <h2 class="section-title">About This Demonstration</h2>
+                <p>This website is hosted on Vercel's edge network with multiple layers of DDoS protection enabled. While no website can be 100% "unhittable," this implementation demonstrates several best practices in DDoS mitigation:</p>
+                <ul>
+                    <li>Edge computing distribution to absorb traffic spikes</li>
+                    <li>Web Application Firewall (WAF) rules to filter malicious requests</li>
+                    <li>Intelligent caching to reduce origin server load</li>
+                    <li>Geographic routing to disperse attack traffic</li>
+                </ul>
+                <p>The goal of this site is educational - to demonstrate robust web security practices while informing visitors about the serious legal consequences of participating in DDoS attacks.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Our Mission</h2>
+                <p>We believe in creating a safer internet for everyone. By demonstrating effective DDoS protection techniques and educating the public about the legal consequences of cybercrime, we hope to:</p>
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">📚 Educate</h3>
+                        <div class="card-content">
+                            Provide clear information about DDoS attacks, their impact, and why they're illegal.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🛡️ Protect</h3>
+                        <div class="card-content">
+                            Demonstrate effective security measures that websites can implement to protect themselves.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">⚖️ Inform</h3>
+                        <div class="card-content">
+                            Highlight the serious legal consequences of participating in DDoS attacks.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>Unhittable Site &copy; 2023 - Demonstrating DDoS Protection & Cybersecurity Awareness</p>
+        </div>
+    </footer>
+    
+    <div class="cursor-dot" id="cursorDot"></div>
+    
+    <script>
+        const root = document.documentElement;
+        
+        function toggleTheme() {
+            const current = root.getAttribute('data-theme');
+            root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+        
+        // Cursor dot follow
+        const cursorDot = document.getElementById('cursorDot');
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+        
+        // Page navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show selected page
+                const pageId = this.getAttribute('data-page');
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById(pageId).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
-
