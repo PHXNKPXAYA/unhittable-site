@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Unhittable Site</title>
+    <title>Unhittable Site - Advanced DDoS Protection</title>
     <style>
         :root {
             --bg-dark: #0d0d0d;
@@ -16,6 +16,8 @@
             --card-bg-light: #ffffff;
             --nav-bg-dark: #111111;
             --nav-bg-light: #eaeaea;
+            --accent: #ff4444;
+            --accent-secondary: #ffaa00;
         }
         
         [data-theme="dark"] {
@@ -47,6 +49,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background 0.3s, color 0.3s;
             overflow-x: hidden;
+            line-height: 1.6;
         }
         
         .container {
@@ -78,6 +81,13 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
         }
         
         .nav-links {
@@ -91,11 +101,27 @@
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             transition: background 0.3s, color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
         }
         
         .nav-link:hover, .nav-link.active {
-            background: var(--border);
-            color: var(--bg);
+            color: var(--accent);
         }
         
         /* Page Content */
@@ -122,12 +148,26 @@
             border-radius: 1.5rem;
             box-shadow: 0 0 20px var(--border);
             animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent 20%, var(--bg) 70%);
+            z-index: -1;
         }
         
         .warning {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #ff4444;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
         }
         
         .joke {
@@ -141,6 +181,19 @@
             padding: 2rem;
             border: 1px solid var(--border);
             border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            z-index: 1;
         }
         
         .section-title {
@@ -149,6 +202,18 @@
             text-align: center;
             border-bottom: 1px solid var(--border);
             padding-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
         }
         
         .cards-container {
@@ -165,6 +230,18 @@
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
         }
         
         .card:hover {
@@ -178,6 +255,9 @@
             color: var(--text);
             border-bottom: 1px solid var(--border);
             padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .card-content {
@@ -198,6 +278,14 @@
             z-index: 2;
             box-shadow: 0 0 10px var(--border);
             transition: background 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle:hover {
+            background: var(--border);
+            color: var(--bg);
         }
         
         .cursor-dot {
@@ -210,6 +298,14 @@
             box-shadow: 0 0 10px var(--text), 0 0 20px var(--text);
             transform: translate(-50%, -50%);
             z-index: 9999;
+            transition: width 0.2s, height 0.2s;
+        }
+        
+        .cursor-dot.active {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid var(--text);
         }
         
         @keyframes glow {
@@ -219,14 +315,14 @@
         
         .legal-warning {
             background: rgba(255, 68, 68, 0.1);
-            border: 1px solid #ff4444;
+            border: 1px solid var(--accent);
             border-radius: 1rem;
             padding: 1.5rem;
             margin-top: 2rem;
         }
         
         .legal-title {
-            color: #ff4444;
+            color: var(--accent);
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
@@ -245,10 +341,147 @@
             padding: 1rem;
             border: 1px solid var(--border);
             border-radius: 0.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(5px);
         }
         
         .feature-icon {
             font-size: 2rem;
+        }
+        
+        /* Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--border);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border: 4px solid var(--bg);
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            position: relative;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1rem;
+            background: var(--card-bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        
+        .faq-answer {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 1rem;
+            max-height: 500px;
         }
         
         /* Footer */
@@ -277,19 +510,46 @@
             .joke {
                 font-size: 1.2rem;
             }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+                right: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <button class="toggle" onclick="toggleTheme()">Toggle Mode</button>
+    <button class="toggle" onclick="toggleTheme()">
+        <span class="theme-icon">🌓</span> Toggle Mode
+    </button>
     
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">UNHITTABLE SITE</div>
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                UNHITTABLE SITE
+            </div>
             <div class="nav-links">
                 <a href="#" class="nav-link active" data-page="home">Home</a>
                 <a href="#" class="nav-link" data-page="protection">Protection</a>
                 <a href="#" class="nav-link" data-page="legal">Legal Info</a>
+                <a href="#" class="nav-link" data-page="stats">Statistics</a>
+                <a href="#" class="nav-link" data-page="history">History</a>
+                <a href="#" class="nav-link" data-page="faq">FAQ</a>
                 <a href="#" class="nav-link" data-page="about">About</a>
             </div>
         </div>
@@ -300,7 +560,7 @@
         <div id="home" class="page active">
             <div class="header">
                 <div class="warning">Attempting to DDoS this website will not work</div>
-                <div class="joke">Preforming DDoS Attacks Comes With Serious Legal Consequences.</div>
+                <div class="joke">Performing DDoS Attacks Comes With Serious Legal Consequences.</div>
             </div>
             
             <div class="content-section">
@@ -380,6 +640,34 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">How Our Protection Works</h2>
+                <p>Our multi-layered approach to DDoS protection ensures that even sophisticated attacks are neutralized before they can impact service availability:</p>
+                
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">🚦 Traffic Analysis</h3>
+                        <div class="card-content">
+                            Incoming traffic is analyzed in real-time using behavioral analysis and machine learning to distinguish between legitimate users and malicious bots.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🛡️ Filtering & Scrubbing</h3>
+                        <div class="card-content">
+                            Malicious traffic is filtered out at the network edge, while legitimate traffic is forwarded to the origin servers without interruption.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🌍 Geographic Dispersion</h3>
+                        <div class="card-content">
+                            Attack traffic is distributed across our global network of scrubbing centers, preventing any single location from being overwhelmed.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Legal Page -->
@@ -427,6 +715,205 @@
                             Canada's Criminal Code includes provisions against unauthorized computer use, with penalties including imprisonment for up to 10 years.
                         </div>
                     </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🇦🇺 Australia</h3>
+                        <div class="card-content">
+                            Under the Criminal Code Act 1995, DDoS attacks can result in up to 10 years imprisonment for serious offenses.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🇯🇵 Japan</h3>
+                        <div class="card-content">
+                            Japan's Penal Code prohibits computer sabotage, with penalties including imprisonment and substantial fines for DDoS attacks.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Statistics Page -->
+        <div id="stats" class="page">
+            <div class="content-section">
+                <h2 class="section-title">DDoS Attack Statistics</h2>
+                <p>Understanding the scale and impact of DDoS attacks helps organizations prepare adequate defenses. Here are some key statistics about modern DDoS threats:</p>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">+50%</div>
+                        <div class="stat-label">Increase in DDoS attacks in 2024</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">2.3 Tbps</div>
+                        <div class="stat-label">Largest recorded DDoS attack</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">$218K</div>
+                        <div class="stat-label">Average cost per attack for businesses</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">15 mins</div>
+                        <div class="stat-label">Average attack duration</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Attack Vectors Distribution</h2>
+                <p>DDoS attacks come in various forms, each requiring specific mitigation strategies:</p>
+                
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">🌊 Volumetric Attacks</h3>
+                        <div class="card-content">
+                            These attacks aim to consume all available bandwidth by flooding the target with massive amounts of traffic. They account for approximately 65% of all DDoS attacks.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">⚡ Protocol Attacks</h3>
+                        <div class="card-content">
+                            These attacks exploit weaknesses in network protocols to consume server resources. They make up about 20% of DDoS incidents.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🎯 Application Layer Attacks</h3>
+                        <div class="card-content">
+                            These sophisticated attacks target specific applications or services, making them harder to detect. They represent around 15% of attacks.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- History Page -->
+        <div id="history" class="page">
+            <div class="content-section">
+                <h2 class="section-title">History of DDoS Attacks</h2>
+                <p>DDoS attacks have evolved significantly since their inception. Understanding this history helps contextualize modern threats and defenses.</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">1999</div>
+                            <h3>The First Major DDoS Attack</h3>
+                            <p>The first widely publicized DDoS attack targeted the University of Minnesota, knocking its network offline for more than two days.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2000</div>
+                            <h3>Major Corporate Targets</h3>
+                            <p>High-profile attacks against Yahoo!, eBay, Amazon, and CNN demonstrated the vulnerability of even the largest internet companies.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2007</div>
+                            <h3>Political Motivation Emerges</h3>
+                            <p>Estonia suffered massive DDoS attacks, widely attributed to political tensions, marking one of the first state-level cyber conflicts.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2016</div>
+                            <h3>Mirai Botnet</h3>
+                            <p>The Mirai botnet demonstrated the power of IoT devices in DDoS attacks, reaching unprecedented sizes and taking down major services.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2018</div>
+                            <h3>Memcached Amplification</h3>
+                            <p>Attackers began exploiting misconfigured memcached servers, achieving massive amplification factors and record-breaking attack sizes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020-Present</div>
+                            <h3>Ransom DDoS & Sophistication</h3>
+                            <p>Ransom-driven DDoS attacks became common, while attack methods grew increasingly sophisticated, requiring advanced AI-based defenses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Page -->
+        <div id="faq" class="page">
+            <div class="content-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What exactly is a DDoS attack?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            A Distributed Denial of Service (DDoS) attack is a malicious attempt to disrupt normal traffic of a targeted server, service, or network by overwhelming the target or its surrounding infrastructure with a flood of Internet traffic. DDoS attacks achieve effectiveness by utilizing multiple compromised computer systems as sources of attack traffic.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How can I tell if my website is under DDoS attack?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Common signs of a DDoS attack include: unusually slow network performance, unavailability of a particular website, inability to access any website, dramatic increase in spam emails, and unexplained disconnect of internet connections.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What's the difference between DoS and DDoS?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            A Denial of Service (DoS) attack uses a single computer and internet connection to flood a target with packets, while a Distributed Denial of Service (DDoS) attack uses multiple computers and internet connections, often globally distributed in what's called a botnet.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Are DDoS attacks always illegal?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, in virtually all jurisdictions, DDoS attacks are illegal. They violate computer crime laws and can result in severe penalties including fines and imprisonment. Even participating in a DDoS attack as part of a botnet without your knowledge can potentially lead to legal consequences.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How can I protect my website from DDoS attacks?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Effective DDoS protection involves multiple layers: using a content delivery network (CDN) to distribute traffic, implementing rate limiting, deploying web application firewalls (WAF), utilizing DDoS protection services, maintaining robust network infrastructure, and having an incident response plan.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can a DDoS attack cause permanent damage?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            While DDoS attacks typically don't cause permanent damage to hardware or data, they can result in significant financial losses due to downtime, recovery costs, and reputational damage. In some cases, DDoS attacks are used as smokescreens for more destructive attacks like data breaches.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -471,12 +958,41 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Contact Information</h2>
+                <p>For questions about DDoS protection or to report security concerns, please contact our security team:</p>
+                
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">📧 Email</h3>
+                        <div class="card-content">
+                            security@unhittablesite.example
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">🌐 Website</h3>
+                        <div class="card-content">
+                            www.unhittablesite.example
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">📱 Social Media</h3>
+                        <div class="card-content">
+                            Follow us for security updates and tips
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
     <footer class="footer">
         <div class="container">
             <p>Unhittable Site &copy; 2025 - Demonstrating DDoS Protection & Cybersecurity Awareness</p>
+            <p>This site is for educational purposes only. Always ensure you have proper authorization before testing security measures.</p>
         </div>
     </footer>
     
@@ -495,6 +1011,15 @@
         document.addEventListener('mousemove', (e) => {
             cursorDot.style.left = e.clientX + 'px';
             cursorDot.style.top = e.clientY + 'px';
+        });
+        
+        // Cursor effect on clickable elements
+        document.addEventListener('mousedown', () => {
+            cursorDot.classList.add('active');
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursorDot.classList.remove('active');
         });
         
         // Page navigation
@@ -519,10 +1044,24 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
+        
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't already active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-
