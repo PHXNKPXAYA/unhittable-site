@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Unhittable Site - Advanced DDoS Protection and Cybersecurity Education">
     <title>Unhittable Site - Advanced DDoS Protection</title>
     <style>
         :root {
@@ -18,6 +19,7 @@
             --nav-bg-light: #eaeaea;
             --accent: #ff4444;
             --accent-secondary: #ffaa00;
+            --accent-tertiary: #4444ff;
         }
         
         [data-theme="dark"] {
@@ -492,6 +494,374 @@
             border-top: 1px solid var(--border);
         }
         
+        /* New Styles for Enhanced Content */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            background: transparent;
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-light);
+            border-color: var(--accent);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+        
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid var(--border);
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background: var(--card-bg);
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .pricing-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tech-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Attack Visualization - FIXED */
+        .attack-visualization {
+            width: 100%;
+            height: 400px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        
+        .attack-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: attackAnimation 3s infinite;
+            z-index: 2;
+        }
+        
+        @keyframes attackAnimation {
+            0% { 
+                transform: scale(1); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: scale(1.5); 
+                opacity: 0.5; 
+            }
+            100% { 
+                transform: scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        .defense-shield {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-secondary);
+            box-shadow: 0 0 20px var(--accent-secondary);
+            animation: shieldPulse 3s infinite;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 170, 0, 0.1);
+        }
+        
+        .defense-shield::after {
+            content: "🛡️";
+            font-size: 2rem;
+        }
+        
+        @keyframes shieldPulse {
+            0% { 
+                box-shadow: 0 0 20px var(--accent-secondary); 
+            }
+            50% { 
+                box-shadow: 0 0 40px var(--accent-secondary); 
+            }
+            100% { 
+                box-shadow: 0 0 20px var(--accent-secondary); 
+            }
+        }
+        
+        .attack-trail {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            transform-origin: left center;
+            z-index: 1;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--border);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .news-excerpt {
+            margin-bottom: 1rem;
+        }
+        
+        .news-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* Visualization Controls */
+        .visualization-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: var(--border);
+        }
+        
+        .control-btn.active {
+            background: var(--accent);
+            color: var(--bg-light);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .nav-container {
@@ -501,6 +871,8 @@
             
             .nav-links {
                 gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             .warning {
@@ -529,6 +901,28 @@
                 left: 21px;
                 right: auto;
             }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .attack-visualization {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -551,6 +945,7 @@
                 <a href="#" class="nav-link" data-page="history">History</a>
                 <a href="#" class="nav-link" data-page="faq">FAQ</a>
                 <a href="#" class="nav-link" data-page="about">About</a>
+                <a href="#" class="nav-link" data-page="pricing">Pricing</a>
             </div>
         </div>
     </nav>
@@ -558,6 +953,16 @@
     <div class="container">
         <!-- Home Page -->
         <div id="home" class="page active">
+            <div class="hero-section">
+                <h1 class="hero-title">Advanced DDoS Protection</h1>
+                <p class="hero-subtitle">Safeguard your digital assets with our enterprise-grade DDoS mitigation solutions. Our multi-layered protection ensures your services remain available even during the most sophisticated attacks.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" data-page="protection">Explore Protection</a>
+                    <a href="#" class="btn" data-page="pricing">View Pricing</a>
+                    <a href="#" class="btn" data-page="about">Learn More</a>
+                </div>
+            </div>
+            
             <div class="header">
                 <div class="warning">Attempting to DDoS this website will not work</div>
                 <div class="joke">Performing DDoS Attacks Comes With Serious Legal Consequences.</div>
@@ -587,6 +992,45 @@
                     <div class="feature-item">
                         <div class="feature-icon">🔒</div>
                         <div>Secure Infrastructure</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🤖</div>
+                        <div>AI-Powered Detection</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div>Real-Time Analytics</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">How DDoS Attacks Work</h2>
+                <div class="attack-visualization" id="attackVisualization">
+                    <!-- Attack nodes and trails will be generated by JavaScript -->
+                </div>
+                <div class="visualization-controls">
+                    <button class="control-btn active" data-type="volumetric">Volumetric Attack</button>
+                    <button class="control-btn" data-type="protocol">Protocol Attack</button>
+                    <button class="control-btn" data-type="application">Application Layer</button>
+                </div>
+                <p>DDoS attacks overwhelm a target's resources by flooding it with traffic from multiple sources. Our visualization above demonstrates how our protection system absorbs and disperses attack traffic while maintaining service for legitimate users.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Client Testimonials</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial">
+                        <div class="testimonial-text">"After implementing Unhittable Site's protection, our e-commerce platform survived a 500 Gbps attack without any downtime. Their service is truly remarkable."</div>
+                        <div class="testimonial-author">- Sarah Johnson, CTO of TechRetail Inc.</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-text">"The real-time analytics and reporting provided invaluable insights into attack patterns. We've strengthened our overall security posture thanks to their expertise."</div>
+                        <div class="testimonial-author">- Michael Chen, Security Director at FinSecure</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-text">"Their 24/7 support team helped us navigate a sophisticated application-layer attack that would have crippled our services. Highly recommended!"</div>
+                        <div class="testimonial-author">- Emily Rodriguez, CEO of HealthData Solutions</div>
                     </div>
                 </div>
             </div>
@@ -668,6 +1112,76 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Attack Mitigation Comparison</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Attack Type</th>
+                            <th>Without Protection</th>
+                            <th>With Basic Protection</th>
+                            <th>With Our Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Volumetric Attacks</td>
+                            <td>Service Downtime</td>
+                            <td>Partial Service</td>
+                            <td>No Impact</td>
+                        </tr>
+                        <tr>
+                            <td>Protocol Attacks</td>
+                            <td>Server Crashes</td>
+                            <td>Performance Issues</td>
+                            <td>No Impact</td>
+                        </tr>
+                        <tr>
+                            <td>Application Layer</td>
+                            <td>Data Breach Risk</td>
+                            <td>Limited Protection</td>
+                            <td>Complete Protection</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Vector Attacks</td>
+                            <td>Complete Outage</td>
+                            <td>Unpredictable Results</td>
+                            <td>Managed Mitigation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Our Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <span class="tech-icon">🌐</span>
+                        <span>Anycast Network</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🤖</span>
+                        <span>Machine Learning</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">⚡</span>
+                        <span>Edge Computing</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔍</span>
+                        <span>Behavioral Analysis</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">📡</span>
+                        <span>Global Scrubbing</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔄</span>
+                        <span>Auto-Scaling</span>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Legal Page -->
@@ -731,6 +1245,32 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Notable Legal Cases</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">Operation Tovar (2014)</h3>
+                        <div class="card-content">
+                            An international operation targeting the GameOver Zeus botnet resulted in multiple arrests and convictions worldwide, demonstrating global cooperation against cybercrime.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">Mirai Botnet Creator (2017)</h3>
+                        <div class="card-content">
+                            The creators of the Mirai botnet received prison sentences and were ordered to pay restitution, setting a precedent for IoT-based attacks.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">Lizard Squad (2016)</h3>
+                        <div class="card-content">
+                            Members of the hacking group Lizard Squad faced charges for DDoS attacks against gaming networks, resulting in prison sentences.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Statistics Page -->
@@ -766,6 +1306,32 @@
                 <h2 class="section-title">Attack Vectors Distribution</h2>
                 <p>DDoS attacks come in various forms, each requiring specific mitigation strategies:</p>
                 
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Volumetric Attacks</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                    
+                    <div class="progress-label">
+                        <span>Protocol Attacks</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 20%"></div>
+                    </div>
+                    
+                    <div class="progress-label">
+                        <span>Application Layer Attacks</span>
+                        <span>15%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 15%"></div>
+                    </div>
+                </div>
+                
                 <div class="cards-container">
                     <div class="card">
                         <h3 class="card-title">🌊 Volumetric Attacks</h3>
@@ -786,6 +1352,45 @@
                         <div class="card-content">
                             These sophisticated attacks target specific applications or services, making them harder to detect. They represent around 15% of attacks.
                         </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Industry Impact</h2>
+                <p>DDoS attacks affect organizations across all sectors, but some industries face greater risks:</p>
+                
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Financial Services</span>
+                        <span>42%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 42%"></div>
+                    </div>
+                    
+                    <div class="progress-label">
+                        <span>Gaming</span>
+                        <span>35%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 35%"></div>
+                    </div>
+                    
+                    <div class="progress-label">
+                        <span>E-commerce</span>
+                        <span>28%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 28%"></div>
+                    </div>
+                    
+                    <div class="progress-label">
+                        <span>Healthcare</span>
+                        <span>19%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 19%"></div>
                     </div>
                 </div>
             </div>
@@ -843,6 +1448,39 @@
                             <div class="timeline-date">2020-Present</div>
                             <h3>Ransom DDoS & Sophistication</h3>
                             <p>Ransom-driven DDoS attacks became common, while attack methods grew increasingly sophisticated, requiring advanced AI-based defenses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Evolution of Attack Methods</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <h3 class="card-title">Early Days (1999-2005)</h3>
+                        <div class="card-content">
+                            Simple flooding attacks using basic tools like Trin00 and TFN. Limited to technical experts with significant resources.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">Botnet Era (2006-2012)</h3>
+                        <div class="card-content">
+                            Rise of botnets made attacks more accessible. Tools became user-friendly, allowing less technical individuals to launch attacks.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">Amplification (2013-2018)</h3>
+                        <div class="card-content">
+                            Attackers exploited protocol vulnerabilities to amplify small requests into massive traffic floods, increasing attack power dramatically.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">IoT & AI (2019-Present)</h3>
+                        <div class="card-content">
+                            Billions of insecure IoT devices created massive botnets, while AI-powered attacks made detection and mitigation more challenging.
                         </div>
                     </div>
                 </div>
@@ -914,6 +1552,26 @@
                             While DDoS attacks typically don't cause permanent damage to hardware or data, they can result in significant financial losses due to downtime, recovery costs, and reputational damage. In some cases, DDoS attacks are used as smokescreens for more destructive attacks like data breaches.
                         </div>
                     </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How quickly can you mitigate an attack?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Our automated systems typically begin mitigation within seconds of detecting an attack. For sophisticated multi-vector attacks, our security team is available 24/7 to implement advanced mitigation strategies.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do you offer protection for all types of DDoS attacks?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, our multi-layered protection is designed to mitigate all major types of DDoS attacks including volumetric, protocol, and application layer attacks. We continuously update our defenses to address emerging threats.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -960,6 +1618,32 @@
             </div>
             
             <div class="content-section">
+                <h2 class="section-title">Latest Security News</h2>
+                <div class="news-container">
+                    <div class="news-card">
+                        <div class="news-date">March 15, 2025</div>
+                        <h3 class="news-title">New DDoS Attack Vector Targets 5G Infrastructure</h3>
+                        <div class="news-excerpt">Security researchers have identified a novel attack method that exploits vulnerabilities in 5G network slicing...</div>
+                        <a href="#" class="news-link">Read More →</a>
+                    </div>
+                    
+                    <div class="news-card">
+                        <div class="news-date">February 28, 2025</div>
+                        <h3 class="news-title">Global Collaboration Disrupts Major Botnet Operation</h3>
+                        <div class="news-excerpt">An international law enforcement operation has successfully taken down a botnet responsible for attacks on critical infrastructure...</div>
+                        <a href="#" class="news-link">Read More →</a>
+                    </div>
+                    
+                    <div class="news-card">
+                        <div class="news-date">February 10, 2025</div>
+                        <h3 class="news-title">AI-Powered DDoS Protection Shows 99.9% Effectiveness</h3>
+                        <div class="news-excerpt">New research demonstrates that machine learning algorithms can detect and mitigate sophisticated DDoS attacks with unprecedented accuracy...</div>
+                        <a href="#" class="news-link">Read More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
                 <h2 class="section-title">Contact Information</h2>
                 <p>For questions about DDoS protection or to report security concerns, please contact our security team:</p>
                 
@@ -983,6 +1667,88 @@
                         <div class="card-content">
                             Follow us for security updates and tips
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pricing Page -->
+        <div id="pricing" class="page">
+            <div class="content-section">
+                <h2 class="section-title">Protection Plans</h2>
+                <p>Choose the right level of protection for your organization. All plans include 24/7 monitoring and basic mitigation.</p>
+                
+                <div class="pricing-container">
+                    <div class="pricing-card">
+                        <h3 class="pricing-title">Basic</h3>
+                        <div class="pricing-price">$99<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li>Up to 10 Gbps Protection</li>
+                            <li>Basic Rate Limiting</li>
+                            <li>Standard CDN</li>
+                            <li>Email Support</li>
+                            <li>Basic Analytics</li>
+                        </ul>
+                        <a href="#" class="btn">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card featured">
+                        <h3 class="pricing-title">Professional</h3>
+                        <div class="pricing-price">$299<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li>Up to 100 Gbps Protection</li>
+                            <li>Advanced Rate Limiting</li>
+                            <li>Global CDN Network</li>
+                            <li>Priority Support</li>
+                            <li>Advanced Analytics</li>
+                            <li>AI-Powered Detection</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">Custom</div>
+                        <ul class="pricing-features">
+                            <li>Unlimited Protection</li>
+                            <li>Custom Rate Limiting</li>
+                            <li>Dedicated CDN</li>
+                            <li>24/7 Dedicated Support</li>
+                            <li>Custom Analytics</li>
+                            <li>Advanced AI Detection</li>
+                            <li>Custom SLAs</li>
+                        </ul>
+                        <a href="#" class="btn">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Why Choose Our Protection?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <div>Zero Performance Impact</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔧</div>
+                        <div>Easy Integration</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📈</div>
+                        <div>Scalable Solutions</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <div>Proven Effectiveness</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <div>Global Coverage</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💼</div>
+                        <div>Enterprise-Grade Security</div>
                     </div>
                 </div>
             </div>
@@ -1023,25 +1789,33 @@
         });
         
         // Page navigation
-        document.querySelectorAll('.nav-link').forEach(link => {
+        document.querySelectorAll('.nav-link, .btn').forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Update active nav link
-                document.querySelectorAll('.nav-link').forEach(nav => {
-                    nav.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // Show selected page
-                const pageId = this.getAttribute('data-page');
-                document.querySelectorAll('.page').forEach(page => {
-                    page.classList.remove('active');
-                });
-                document.getElementById(pageId).classList.add('active');
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (this.getAttribute('data-page')) {
+                    e.preventDefault();
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(nav => {
+                        nav.classList.remove('active');
+                    });
+                    
+                    // Find and activate the corresponding nav link
+                    const pageId = this.getAttribute('data-page');
+                    document.querySelectorAll('.nav-link').forEach(nav => {
+                        if (nav.getAttribute('data-page') === pageId) {
+                            nav.classList.add('active');
+                        }
+                    });
+                    
+                    // Show selected page
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         });
         
@@ -1060,6 +1834,178 @@
                 if (!isActive) {
                     item.classList.add('active');
                 }
+            });
+        });
+        
+        // Attack visualization - FIXED
+        let attackInterval;
+        let currentAttackType = 'volumetric';
+        
+        function createAttackVisualization() {
+            const container = document.getElementById('attackVisualization');
+            if (!container) return;
+            
+            // Clear existing nodes and trails
+            container.innerHTML = '<div class="defense-shield"></div>';
+            
+            // Get container dimensions
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+            
+            // Create attack nodes based on attack type
+            let nodeCount;
+            let speed;
+            
+            switch(currentAttackType) {
+                case 'volumetric':
+                    nodeCount = 30;
+                    speed = 2000;
+                    break;
+                case 'protocol':
+                    nodeCount = 20;
+                    speed = 3000;
+                    break;
+                case 'application':
+                    nodeCount = 15;
+                    speed = 4000;
+                    break;
+                default:
+                    nodeCount = 25;
+                    speed = 2500;
+            }
+            
+            for (let i = 0; i < nodeCount; i++) {
+                createAttackNode(container, containerWidth, containerHeight, speed);
+            }
+        }
+        
+        function createAttackNode(container, containerWidth, containerHeight, speed) {
+            const node = document.createElement('div');
+            node.className = 'attack-node';
+            
+            // Random starting position around the edges
+            const side = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
+            let startX, startY;
+            
+            switch(side) {
+                case 0: // top
+                    startX = Math.random() * containerWidth;
+                    startY = -10;
+                    break;
+                case 1: // right
+                    startX = containerWidth + 10;
+                    startY = Math.random() * containerHeight;
+                    break;
+                case 2: // bottom
+                    startX = Math.random() * containerWidth;
+                    startY = containerHeight + 10;
+                    break;
+                case 3: // left
+                    startX = -10;
+                    startY = Math.random() * containerHeight;
+                    break;
+            }
+            
+            // Target position (center of shield)
+            const targetX = containerWidth / 2;
+            const targetY = containerHeight / 2;
+            
+            // Set initial position
+            node.style.left = `${startX}px`;
+            node.style.top = `${startY}px`;
+            
+            // Calculate distance and angle to target
+            const dx = targetX - startX;
+            const dy = targetY - startY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const angle = Math.atan2(dy, dx);
+            
+            // Create trail
+            const trail = document.createElement('div');
+            trail.className = 'attack-trail';
+            trail.style.left = `${startX}px`;
+            trail.style.top = `${startY}px`;
+            trail.style.width = '0px';
+            trail.style.transform = `rotate(${angle}rad)`;
+            
+            container.appendChild(trail);
+            container.appendChild(node);
+            
+            // Animate node and trail
+            let startTime = null;
+            
+            function animateNode(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / speed, 1);
+                
+                // Calculate current position
+                const currentX = startX + dx * progress;
+                const currentY = startY + dy * progress;
+                
+                // Update node position
+                node.style.left = `${currentX}px`;
+                node.style.top = `${currentY}px`;
+                
+                // Update trail length
+                trail.style.width = `${distance * progress}px`;
+                
+                // If animation not complete, continue
+                if (progress < 1) {
+                    requestAnimationFrame(animateNode);
+                } else {
+                    // Remove node and trail when they reach the shield
+                    setTimeout(() => {
+                        if (node.parentNode) node.parentNode.removeChild(node);
+                        if (trail.parentNode) trail.parentNode.removeChild(trail);
+                    }, 100);
+                }
+            }
+            
+            requestAnimationFrame(animateNode);
+        }
+        
+        // Initialize attack visualization
+        createAttackVisualization();
+        
+        // Update visualization periodically
+        attackInterval = setInterval(createAttackVisualization, 3000);
+        
+        // Visualization controls
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.control-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Update attack type
+                currentAttackType = this.getAttribute('data-type');
+                
+                // Clear existing interval
+                clearInterval(attackInterval);
+                
+                // Create new visualization
+                createAttackVisualization();
+                
+                // Set new interval based on attack type
+                let intervalTime;
+                switch(currentAttackType) {
+                    case 'volumetric':
+                        intervalTime = 2000;
+                        break;
+                    case 'protocol':
+                        intervalTime = 3000;
+                        break;
+                    case 'application':
+                        intervalTime = 4000;
+                        break;
+                    default:
+                        intervalTime = 2500;
+                }
+                
+                attackInterval = setInterval(createAttackVisualization, intervalTime);
             });
         });
     </script>
