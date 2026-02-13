@@ -1,0 +1,252 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Typography: SF Pro Display + SF Pro Text for Apple-inspired design */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Glassmorphism + Soft Gradients Design System */
+  --primary: oklch(0.6 0.22 260);
+  --primary-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.6 0.22 260);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --chart-1: oklch(0.65 0.2 255);
+  --chart-2: oklch(0.6 0.22 260);
+  --chart-3: oklch(0.55 0.25 265);
+  --chart-4: oklch(0.5 0.28 270);
+  --chart-5: oklch(0.45 0.3 275);
+  --radius: 1rem;
+  /* Light mode: soft white background with subtle gray */
+  --background: oklch(0.98 0.001 0);
+  --foreground: oklch(0.235 0.015 65);
+  --card: oklch(1 0 0 / 0.95);
+  --card-foreground: oklch(0.235 0.015 65);
+  --popover: oklch(1 0 0 / 0.92);
+  --popover-foreground: oklch(0.235 0.015 65);
+  --secondary: oklch(0.95 0.002 286.375);
+  --secondary-foreground: oklch(0.4 0.015 65);
+  --muted: oklch(0.92 0.002 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.6 0.22 260);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.9 0.003 286.32);
+  --input: oklch(0.95 0.002 286.32);
+  --ring: oklch(0.6 0.22 260 / 0.5);
+  --sidebar: oklch(0.98 0.001 0);
+  --sidebar-foreground: oklch(0.235 0.015 65);
+  --sidebar-accent: oklch(0.6 0.22 260);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.9 0.003 286.32);
+  --sidebar-ring: oklch(0.6 0.22 260 / 0.5);
+}
+
+.dark {
+  /* Dark mode: deep background with soft glass layers */
+  --primary: oklch(0.65 0.2 255);
+  --primary-foreground: oklch(0.12 0 0);
+  --sidebar-primary: oklch(0.65 0.2 255);
+  --sidebar-primary-foreground: oklch(0.12 0 0);
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.88 0.003 65);
+  --card: oklch(0.18 0.005 285.885 / 0.85);
+  --card-foreground: oklch(0.88 0.003 65);
+  --popover: oklch(0.18 0.005 285.885 / 0.82);
+  --popover-foreground: oklch(0.88 0.003 65);
+  --secondary: oklch(0.22 0.006 286.033);
+  --secondary-foreground: oklch(0.75 0.003 65);
+  --muted: oklch(0.28 0.006 286.033);
+  --muted-foreground: oklch(0.7 0.015 286.067);
+  --accent: oklch(0.65 0.2 255);
+  --accent-foreground: oklch(0.12 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: oklch(0.65 0.2 255 / 0.5);
+  --chart-1: oklch(0.65 0.2 255);
+  --chart-2: oklch(0.6 0.22 260);
+  --chart-3: oklch(0.55 0.25 265);
+  --chart-4: oklch(0.5 0.28 270);
+  --chart-5: oklch(0.45 0.3 275);
+  --sidebar: oklch(0.18 0.005 285.885);
+  --sidebar-foreground: oklch(0.88 0.003 65);
+  --sidebar-accent: oklch(0.65 0.2 255);
+  --sidebar-accent-foreground: oklch(0.12 0 0);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.65 0.2 255 / 0.5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  /* Glassmorphism Design System Components */
+  .glass {
+    @apply backdrop-blur-xl bg-card/80 border border-border/40 rounded-2xl;
+  }
+
+  .glass-lg {
+    @apply backdrop-blur-2xl bg-card/85 border border-border/40 rounded-2xl;
+  }
+
+  .glass-sm {
+    @apply backdrop-blur-md bg-card/75 border border-border/30 rounded-xl;
+  }
+
+  /* Soft shadow for glassmorphism */
+  .shadow-glass {
+    @apply shadow-lg;
+  }
+
+  /* Gradient text for headlines */
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-blue-600 bg-clip-text text-transparent;
+  }
+
+  /* Typography system */
+  body {
+    @apply font-sans;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-bold tracking-tight;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold tracking-tight;
+  }
+
+  h5 {
+    @apply text-lg font-semibold tracking-tight;
+  }
+
+  h6 {
+    @apply text-base font-semibold tracking-tight;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  .text-sm {
+    @apply text-sm leading-relaxed;
+  }
+
+  .text-xs {
+    @apply text-xs leading-relaxed;
+  }
+
+  /* Monospace for technical content */
+  code {
+    @apply font-mono text-sm bg-muted px-2 py-1 rounded-md;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
