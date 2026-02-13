@@ -115,7 +115,7 @@ export default function VerificationGate({ onVerified }: VerificationGateProps) 
               {recaptchaReady && (
                 <div
                   className="g-recaptcha"
-                  data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  data-sitekey="6Lc9uWksAAAAAN-p2EmGz_yLYLaBA1baWQJmZwjP"
                 />
               )}
             </div>
